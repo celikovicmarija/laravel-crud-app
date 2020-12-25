@@ -1,13 +1,13 @@
-@extends('contacts.layout')
+@extends('posts.layout')
   
 @section('content')
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Add New Author</h2>
+            <h2>Add New Post</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('contacts.index') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ route('posts.index') }}"> Back</a>
         </div>
     </div>
 </div>
@@ -23,45 +23,44 @@
     </div>
 @endif
    
-<form action="{{ route('contacts.store') }}" method="POST">
+<form action="{{ route('posts.store') }}" method="POST">
     @csrf
   
      <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>First Name:</strong>
-                <input type="text" name="firstName" class="form-control" placeholder="FirstName">
+                <strong>Title:</strong>
+                <input type="text" name="title" class="form-control" placeholder="Title">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Last Name:</strong>
-                <input type="text" name="lastName" class="form-control" placeholder="LastName">
+                <strong>postContent:</strong>
+                <textarea class="form-control" style="height:150px" name="postContent" placeholder="PostContent"></textarea>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Email:</strong>
-                <input type="text" name="email" class="form-control" placeholder="Email">
-            </div>
-        </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>City:</strong>
-                <input class="form-control" style="height:150px" name="city" placeholder="City">
+                <strong>Author:</strong>
+                <input class="form-control" style="height:150px" name="author" placeholder="Author">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Country:</strong>
-                <input class="form-control" style="height:150px" name="country" placeholder="Country">
+                <strong>Date:</strong>
+                <input class="form-control" style="height:150px" name="date" placeholder="Date">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Date of Birth:</strong>
-                <input class="form-control" style="height:150px" name="birthDate" placeholder="BirtDate">
+                <strong>Topic:</strong>
+                <textarea class="form-control" style="height:150px" name="topic" placeholder="Topic"></textarea>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Reading Time:</strong>
+                <textarea class="form-control" style="height:150px" name="readingTime" placeholder="ReadingTime"></textarea>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">

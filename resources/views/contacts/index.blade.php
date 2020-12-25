@@ -1,58 +1,60 @@
 @extends('contacts.layout')
-<!--@extends('base')-->
-@section('main')
-<div class="row">
-<div class="col-sm-12">
-    <h1 class="display-3">Contacts</h1>    
-    <div>
-    <a style="margin: 19px;" href="{{ route('contacts.create')}}" class="btn btn-primary">New contact</a>
+ 
+@section('content')
+    <div class="row">
+        <div class="col-lg-12 margin-tb">
+            <div class="pull-left">
+                <h2>Laravel CRUD</h2>
+            </div>
+            <div class="pull-right">
+                <a class="btn btn-success" href="{{ route('contacts.create') }}"> Create New Contact</a>
+            </div>
+        </div>
     </div>
-  <table class="table table-striped">
-    <thead>
+   
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+    @endif
+   
+    <table class="table table-bordered">
         <tr>
-          <td>ID</td>
-          <td>Name</td>
-          <td>Email</td>
-          <td>Job Title</td>
-          <td>City</td>
-          <td>Country</td>
-          <td colspan = 2>Actions</td>
+            <th>No</th>
+            <th>First Name</th>
+            <th>LastName </th>
+            <th>Email</th>
+            <th>City</th>
+            <th>Country</th>
+            <th>Date of Birth </th>
+            <th width="280px">Action</th>
         </tr>
-    </thead>
-    <tbody>
-        @foreach($contacts as $contact)
+        @foreach ($contacts as $contact)
         <tr>
-            <td>{{$contact->id}}</td>
-            <td>{{$contact->first_name}} {{$contact->last_name}}</td>
-            <td>{{$contact->email}}</td>
-            <td>{{$contact->job_title}}</td>
-            <td>{{$contact->city}}</td>
-            <td>{{$contact->country}}</td>
+            <td>{{ ++$i }}</td>
+            <td>{{ $contact->firstName }}</td>
+            <td>{{ $contact->lastName }}</td>
+            <td>{{ $contact->email }}</td>
+            <td>{{ $contact->city }}</td>
+            <td>{{ $contact->country }}</td>
+            <td>{{ $contact->birthDate }}</td>
             <td>
-                   <a class="btn btn-info" href="{{ route('contacts.show',$contact->id) }}">Show</a>
+                <form action="{{ route('contacts.destroy',$contact->id) }}" method="POST">
+   
+                    <a class="btn btn-info" href="{{ route('contacts.show',$contact->id) }}">Show</a>
     
-                <a href="{{ route('contacts.edit',$contact->id)}}" class="btn btn-primary">Edit</a>
-            </td>
-            <td>
-               
-     
-                <form action="{{ route('contacts.destroy', $contact->id)}}" method="post">
-                  @csrf
-                  @method('DELETE')
-                  <button class="btn btn-danger" type="submit">Delete</button>
+                    <a class="btn btn-primary" href="{{ route('contacts.edit',$contact->id) }}">Edit</a>
+   
+                    @csrf
+                    @method('DELETE')
+      
+                    <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
             </td>
         </tr>
         @endforeach
-    </tbody>
-  </table>
-<div>
-</div>
-<div class="col-sm-12">
-  @if(session()->get('success'))
-    <div class="alert alert-success">
-      {{ session()->get('success') }}  
-    </div>
-  @endif
-</div>
+    </table>
+  
+    {!! $contacts->links('pagination::bootstrap-4') !!}
+      
 @endsection

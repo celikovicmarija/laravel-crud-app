@@ -1,13 +1,13 @@
-@extends('contacts.layout')
+@extends('posts.layout')
    
 @section('content')
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Edit Author</h2>
+                <h2>Edit Post</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('contacts.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('posts.index') }}"> Back</a>
             </div>
         </div>
     </div>
@@ -23,46 +23,45 @@
         </div>
     @endif
   
-    <form action="{{ route('contacts.update',$contact->id) }}" method="POST">
+    <form action="{{ route('posts.update',$post->id) }}" method="POST">
         @csrf
         @method('PUT')
    
          <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>FirstName:</strong>
-                    <input type="text" name="firstName" value="{{ $contact->firstName }}" class="form-control" placeholder="FirstName">
+                    <strong>Title:</strong>
+                    <input type="text" name="title" value="{{ $post->title }}" class="form-control" placeholder="Title">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>LastName:</strong>
-                    <input type="text" name="lastName" value="{{ $contact->lastName }}" class="form-control" placeholder="LastName">
-                </div>
-            </div>
-
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Email:</strong>
-                    <input type="text" name="email" value="{{ $contact->email }}" class="form-control" placeholder="Email">
+                    <strong>PostContent:</strong>
+                    <textarea class="form-control" style="height:150px" name="postContent" placeholder="PostContent">{{ $post->postContent }}</textarea>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>City:</strong>
-                    <input type="text" name="city" value="{{ $contact->city }}" class="form-control" placeholder="City">
+                    <strong>Author:</strong>
+                    <input type="text" name="author" value="{{ $post->author }}" class="form-control" placeholder="Author">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Country:</strong>
-                    <input type="text" name="country" value="{{ $contact->country }}" class="form-control" placeholder="Country">
+                    <strong>Date:</strong>
+                    <input type="text" name="date" value="{{ $post->date }}" class="form-control" placeholder="Date">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Date of Birth:</strong>
-                    <input type="text" name="birthDate" value="{{ $contact->birthDate }}" class="form-control" placeholder="BirthDate">
+                    <strong>Topic:</strong>
+                    <textarea class="form-control" style="height:150px" name="topic" placeholder="Topic">{{ $post->topic }}</textarea>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>ReadingTime:</strong>
+                    <input type="text" name="readingTime" value="{{ $post->readingTime }}" class="form-control" placeholder="ReadingTime">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
