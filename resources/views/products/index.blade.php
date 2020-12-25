@@ -1,5 +1,4 @@
 @extends('products.layout')
- 
 @section('content')
     <div class="row">
         <div class="col-lg-12 margin-tb">
@@ -47,6 +46,6 @@
         @endforeach
     </table>
   
-    {!! $products->links('pagination::bootstrap-4') !!}
-      
+   <!-- {!! $products->links('pagination::bootstrap-4') !!}
+      -->
 @endsection

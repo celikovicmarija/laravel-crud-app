@@ -1,5 +1,4 @@
 @extends('contacts.layout')
- 
 @section('content')
     <div class="row">
         <div class="col-lg-12 margin-tb">
@@ -22,7 +21,7 @@
         <tr>
             <th>No</th>
             <th>First Name</th>
-            <th>LastName </th>
+            <th>LastName</th>
             <th>Email</th>
             <th>City</th>
             <th>Country</th>
@@ -31,7 +30,7 @@
         </tr>
         @foreach ($contacts as $contact)
         <tr>
-            <td>{{ ++$i }}</td>
+            <td></td>
             <td>{{ $contact->firstName }}</td>
             <td>{{ $contact->lastName }}</td>
             <td>{{ $contact->email }}</td>
@@ -55,6 +54,6 @@
         @endforeach
     </table>
   
-    {!! $contacts->links('pagination::bootstrap-4') !!}
-      
+   {!! $contacts->links('pagination::bootstrap-4') !!}
+     
 @endsection

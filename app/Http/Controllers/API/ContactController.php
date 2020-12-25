@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Contact;
+use App\Http\Resources\Contact as ContactResource;
+use App\Models\Contact as ContactModel;
+use Illuminate\Support\Facades\Validator;
 
-class ContactController extends Controller
+class ContactController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -14,14 +16,12 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::latest()->paginate(5);
-  
-        return view('contacts.index',compact('contacts'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
- 
-   
-        //$contacts = Contact::all();
-        //return view('contacts.index', compact('contacts'));
+        $contacts =ContactModel::all();
+
+        return $this->sendResponse(ContactResource::collection($contacts), 'Contacts retrieved successfully');
+      
+       // $contacts = Contact::all();
+       // return view('contacts.index', compact('contacts'));
     }
 
     /**
@@ -42,7 +42,8 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $input = $request->all();
+        $validator = Validator::make($input,[
             'firstName'=>'required',
             'lastName'=>'required',
             'email'=>'required',
@@ -50,16 +51,14 @@ class ContactController extends Controller
             'city'=>'required',
             'birthDate'=>'required',
         ]);
-        $contact = new Contact([
-            'firstName' => $request->get('firstName'),
-            'lastName' => $request->get('lastName'),
-            'email' => $request->get('email'),
-            'birthDate' => $request->get('birthDate'),
-            'city' => $request->get('city'),
-            'country' => $request->get('country')
-        ]);
-        $contact->save();
-        return redirect('/contacts')->with('success', 'Contact saved!');
+        if($validator->fails()){
+            return $this->sendError('Validation error.', $validator->errors());
+        
+            $contact = ContactModel::create($input);
+            return $this->sendResponse(new ContactResource($contact), 'Contact created successfully!');
+    
+        }
+    
     }
 
     /**
@@ -68,10 +67,14 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Contact $contact)
-    {  
-        return view('contacts.show',compact('contact'));
- 
+    public function show($id)
+    {
+        $contact = ContactModel::find($id);
+        if(is_null($contact)){
+            return $this->sendError('Contact not found.');
+        }
+        return $this->sendResponse(new ContactResource($contact), ' Contact retrieved successfully');
+        ///return view('contacts.show',compact('contact'));
     }
 
     /**
@@ -80,7 +83,7 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Contact $contact)
+    public function edit($id)
     {
         return view('contacts.edit', compact('contact'));  
     }
@@ -92,9 +95,10 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Contact $contact)
-    {
-        $request->validate([
+    public function update(Request $request, ContactModel $contact)
+    { 
+        $input = $request->all();
+        $validator = Validator::make($input,[
             'firstName'=>'required',
             'lastName'=>'required',
             'email'=>'required',
@@ -102,16 +106,20 @@ class ContactController extends Controller
             'city'=>'required',
             'birthDate'=>'required',
         ]);
-       /* $contact = Contact::find($id);
+        if($validator->fails()){
+            return $this->sendError('Validation error.', $validator->errors());
+        }
         $contact->firstName =  $request->get('firstName');
         $contact->lastName = $request->get('lastName');
         $contact->email = $request->get('email');
         $contact->birthDate = $request->get('birthDate');
         $contact->city = $request->get('city');
         $contact->country = $request->get('country');
-     */
-       $contact->update($request->all());
-        return redirect('/contacts')->with('success', 'Contact updated!');
+        $contact->save();
+     
+        return $this->sendResponse(new ContactResource($contact), ' Contact updated successfully!');
+
+    
     }
 
     /**
@@ -120,9 +128,9 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Contact $contact)
+    public function destroy(ContactModel $contact)
     {
         $contact->delete();
-        return redirect()->route('contacts.index')->with('success', 'Contact deleted!');
-    }
+        return $this->sendResponse([], ' Contact deleted successfully!');
+  }
 }
