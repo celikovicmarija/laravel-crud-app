@@ -1,6 +1,5 @@
 <?php
-//NECE RADITI OVDE OVAKO, NEGO KADA IH IZBACIS IZ FOLDERA 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;

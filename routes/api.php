@@ -2,11 +2,13 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\ContactController;
+use App\Http\Controllers\API\PostController;
+use App\Http\Controllers\API\ContactController;
 use App\Models\Post;
 use App\Models\Contact;
 /*
+use App\Http\Controllers\Api\RegisterController;
+use App\Http\Controllers\Api\ProductController;
 |--------------------------------------------------------------------------
 | API Routes
 |--------------------------------------------------------------------------
@@ -20,6 +22,14 @@ use App\Models\Contact;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::prefix('')->group(function(){
+    Route::resource('posts', 'App\Http\Controllers\API\PostController');
+});
+Route::prefix('')->group(function(){
+    Route::resource('contacts', 'App\Http\Controllers\API\ContactController');
+});
+
+/*
 Route::get('posts', 'App\Http\Controllers\PostController@index');
 Route::get('/posts/{post}', 'App\Http\Controllers\PostController@show');
 
@@ -36,4 +46,4 @@ Route::post('/posts', 'App\Http\Controllers\PostController@store');
 Route::post('/contacts', 'App\Http\Controllers\ContactController@store');
 
 Route::put('/posts/{post}', 'App\Http\Controllers\PostController@update');
-Route::put('/contacts/{contact}', 'App\Http\Controllers\ContactController@update');
+Route::put('/contacts/{contact}', 'App\Http\Controllers\ContactController@update');*/
