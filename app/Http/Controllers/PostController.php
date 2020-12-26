@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Http\Resources\Post as PostResource;
+use App\Models\Post as PostModel;
+use Illuminate\Support\Facades\Validator;
 
-class PostController extends Controller
+
+class PostController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +17,13 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->paginate(5);
+        $posts =PostModel::all();
+
+        return $this->sendResponse(PostResource::collection($posts), 'Posts retrieved successfully');
+       // $posts = Post::latest()->paginate(5);
   
-        return view('posts.index',compact('posts'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+       // return  view('posts.index',compact('posts'))
+       //     ->with('i', (request()->input('page', 1) - 1) * 5);
  
     }
 
@@ -39,7 +45,9 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $input = $request->all();
+        $validator = Validator::make($input,
+        [
             'title' => 'required',
             'postContent' => 'required',
             'contactId' => 'required',
@@ -47,11 +55,17 @@ class PostController extends Controller
             'topic' => 'required',
             'readingTime' => 'required',
         ]);
-       
-        Post::create($request->all());
+        if($validator->fails()){
+            return $this->sendError('Validation error.', $validator->errors());
+        }
+
+        $post = PostModel::create($input);
+        return $this->sendResponse(new PostResource($post), ' Post created successfully!');
+
+        //Post::create($request->all());
    
-        return redirect()->route('posts.index')
-                        ->with('success','Post created successfully.');
+      //  return redirect()->route('posts.index')
+      //                 ->with('success','Post created successfully.');
  
     }
 
@@ -61,9 +75,15 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($id)
     {
-        return view('posts.show',compact('post'));
+        $post = PostModel::find($id);
+        if(is_null($post)){
+            return $this->sendError('Post not found.');
+        }
+        return $this->sendResponse(new PostResource($post), ' Post retrieved successfully');
+
+        //return view('posts.show',compact('post'));
     }
 
     /**
@@ -72,8 +92,9 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit($id)
     {
+        $post = PostModel::find($id);
         return view('posts.edit',compact('post'));
     }
 
@@ -86,7 +107,9 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        $request->validate([
+        $input = $request->all();
+        $validator = Validator::make($input,
+        [
             'title' => 'required',
             'postContent' => 'required',
             'contactId' => 'required',
@@ -94,6 +117,21 @@ class PostController extends Controller
             'topic' => 'required',
             'readingTime' => 'required',
         ]);
+        if($validator->fails()){
+            return $this->sendError('Validation error.', $validator->errors());
+        }
+        $post->title = $input['title'];
+        $post->postContent = $input['postContent'];
+        $post->author = $input['author'];
+        $post->date = $input['date'];
+        $post->topic = $input['topic'];
+        $post->readingTime = $input['treadingTimeitle'];
+        $post->save();
+
+        return $this->sendResponse(new PostResource($post), ' Post updated successfully!');
+
+
+        
   
         $post->update($request->all());
   
@@ -108,12 +146,11 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
+        $post = PostModel::find($id);
         $post->delete();
-  
-        return redirect()->route('posts.index')
-                        ->with('success','Post deleted successfully');
-  
+        return $this->sendResponse([], ' Post deleted successfully!');
+
     }
 }

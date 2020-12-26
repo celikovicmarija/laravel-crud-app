@@ -20,22 +20,24 @@ use App\Models\Contact;
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::resource('posts','App\Http\Controllers\PostController');
 Route::resource('contacts', 'App\Http\Controllers\ContactController');
 /*
 Route::get('posts', 'App\Http\Controllers\PostController@index');
-Route::get('/posts/{id}', 'App\Http\Controllers\PostController@show');
-Route::get('/posts/{id}/edit', 'App\Http\Controllers\PostController@edit');
+Route::get('/posts/{post}', 'App\Http\Controllers\PostController@show');
 
 Route::get('contacts', 'App\Http\Controllers\ContactController@index');
-Route::get('/contacts/{id}', 'App\Http\Controllers\ContactController@show');
-Route::get('/contacts/{id}/edit', 'App\Http\Controllers\ContactController@edit');
-//PRVI PARAMETAR 
-Route::post('/posts/create', 'App\Http\Controllers\PostController@store');
-Route::post('/contacts/create', 'App\Http\Controllers\ContactController@store');
+Route::get('/contacts/{contact}', 'App\Http\Controllers\ContactController@show');
 
-Route::delete('/posts/delete/{id}', 'App\Http\Controllers\PostController@destroy');
-Route::delete('/contacts/delete/{id}', 'App\Http\Controllers\ContactController@destroy');
+Route::delete('/posts/{post}', 'App\Http\Controllers\PostController@destroy');
+Route::delete('/contacts/{contact}', 'App\Http\Controllers\ContactController@destroy');
 
-Route::put('/posts/{id}', 'App\Http\Controllers\PostController@update');
-Route::put('/contacts/{id}', 'App\Http\Controllers\ContactController@update');*/
+Route::get('/contacts/{contact}/edit', 'App\Http\Controllers\ContactController@edit');
+Route::get('/posts/{post}/edit', 'App\Http\Controllers\PostController@edit');
+
+Route::post('/posts', 'App\Http\Controllers\PostController@store');
+Route::post('/contacts', 'App\Http\Controllers\ContactController@store');
+
+Route::put('/posts/{post}', 'App\Http\Controllers\PostController@update');
+Route::put('/contacts/{contact}', 'App\Http\Controllers\ContactController@update');*/

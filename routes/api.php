@@ -16,36 +16,24 @@ use App\Models\Contact;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-/*
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-*/
-/*
-Route::prefix('')->group(function(){
-    Route::resource('posts', PostController::class);
-    Route::resource('contacts', ContactController::class);
+Route::get('posts', 'App\Http\Controllers\PostController@index');
+Route::get('/posts/{post}', 'App\Http\Controllers\PostController@show');
 
-});*//*
-Route::get('posts', function (Request $request) {
-    return $request->post();
-});*/
+Route::get('contacts', 'App\Http\Controllers\ContactController@index');
+Route::get('/contacts/{contact}', 'App\Http\Controllers\ContactController@show');
 
-//('posts/{id}','App\Http\Controllers\PostController@show');
-/*
-Route::get('posts', function() {
-    // If the Content-Type and Accept headers are set to 'application/json', 
-    // this will return a JSON structure. This will be cleaned up later.
-    return Post::all();
-});
-Route::get('posts/{id}', function(Post $post) {
-    return Post::find($id);
-});
-Route::get('posts','App\Http\Controllers\PostController@index');
-Route::get('contacts','App\Http\Controllers\ContactController@index');
-*/
-/*
-Route::get('contacts', function() {
-    return Contact::all();
-});*/
-//Route::get('posts/{id}','App\Http\Controllers\PostController@show');
+Route::delete('/posts/{post}', 'App\Http\Controllers\PostController@destroy');
+Route::delete('/contacts/{contact}', 'App\Http\Controllers\ContactController@destroy');
+
+Route::get('/contacts/{contact}/edit', 'App\Http\Controllers\ContactController@edit');
+Route::get('/posts/{post}/edit', 'App\Http\Controllers\PostController@edit');
+
+Route::post('/posts', 'App\Http\Controllers\PostController@store');
+Route::post('/contacts', 'App\Http\Controllers\ContactController@store');
+
+Route::put('/posts/{post}', 'App\Http\Controllers\PostController@update');
+Route::put('/contacts/{contact}', 'App\Http\Controllers\ContactController@update');

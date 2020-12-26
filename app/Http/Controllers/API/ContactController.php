@@ -129,8 +129,9 @@ class ContactController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ContactModel $contact)
+    public function destroy($id)
     {
+        $contact = ContactModel::find($id);
         $contact->delete();
         return $this->sendResponse([], ' Contact deleted successfully!');
   }

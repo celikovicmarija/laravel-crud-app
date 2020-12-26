@@ -146,8 +146,9 @@ class PostController extends BaseController
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PostModel $post)
+    public function destroy($id)
     {
+        $post = PostModel::find($id);
         $post->delete();
         return $this->sendResponse([], ' Post deleted successfully!');
 
