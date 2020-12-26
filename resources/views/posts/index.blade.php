@@ -18,23 +18,23 @@
         </div>
     @endif
    
-    <table class="table table-bordered">
+    <table class="table table-bordered text-center">
         <tr>
             <th>No</th>
-            <th>Title</th>
-            <th>Post content</th>
-            <th>Author</th>
-            <th>Date</th>
+            <th width="130px">Title</th>
+            <th width="260px">Post content</th>
+            <th width="8px">Author</th>
+            <th >Date</th>
             <th>Topic</th>
-            <th>Reading Time</th>
-            <th width="280px">Action</th>
+            <th width="9px">Reading Time</th>
+            <th width="230px">Action</th>
         </tr>
         @foreach ($posts as $post)
         <tr>
             <td>{{ ++$i }}</td>
             <td>{{ $post->title }}</td>
             <td>{{ $post->postContent }}</td>
-            <td>{{ $post->author }}</td>
+            <td>{{ $post->contactId }}</td>
             <td>{{ $post->date }}</td>
             <td>{{ $post->topic }}</td>
             <td>{{ $post->readingTime }}</td>

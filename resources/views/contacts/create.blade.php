@@ -22,6 +22,8 @@
         </ul>
     </div>
 @endif
+
+
    
 <form action="{{ route('contacts.store') }}" method="POST">
     @csrf
@@ -49,19 +51,19 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>City:</strong>
-                <input class="form-control" style="height:150px" name="city" placeholder="City">
+                <input class="form-control" name="city" placeholder="City">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Country:</strong>
-                <input class="form-control" style="height:150px" name="country" placeholder="Country">
+                <input class="form-control" name="country" placeholder="Country">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Date of Birth:</strong>
-                <input class="form-control" style="height:150px" name="birthDate" placeholder="BirtDate">
+                <input class="form-control" name="birthDate" placeholder="BirtDate">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">

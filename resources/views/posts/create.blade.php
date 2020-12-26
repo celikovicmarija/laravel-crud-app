@@ -41,26 +41,26 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Author:</strong>
-                <input class="form-control" style="height:150px" name="author" placeholder="Author">
+                <strong>ContactId:</strong>
+                <input class="form-control" name="contactId" placeholder="ContactId">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Date:</strong>
-                <input class="form-control" style="height:150px" name="date" placeholder="Date">
+                <input class="form-control" name="date" placeholder="Date">
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Topic:</strong>
-                <textarea class="form-control" style="height:150px" name="topic" placeholder="Topic"></textarea>
+                <textarea class="form-control" style="height:90px" name="topic" placeholder="Topic"></textarea>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Reading Time:</strong>
-                <textarea class="form-control" style="height:150px" name="readingTime" placeholder="ReadingTime"></textarea>
+                <textarea class="form-control"name="readingTime" placeholder="ReadingTime"></textarea>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">

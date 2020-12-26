@@ -20,7 +20,7 @@ class Contact extends JsonResource
             'email'=>$this->email,
             'city'=>$this->city,
             'country'=>$this->country,
-            'birthDate'=>$this->birthDate //->format('Y-m-d')
+            'birthDate'=>$this->birthDate//->format('Y-m-d')
         ];
     }
 }

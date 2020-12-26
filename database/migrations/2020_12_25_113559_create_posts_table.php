@@ -15,16 +15,14 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
+            $table->timestamps();
             $table->string('title');
             $table->text('postContent');
-            $table->string('author'); 
-            $table->string('date'); 
+            $table->dateTime('date'); 
             $table->string('topic'); 
-            $table->string('readingTime');
-
-            $table->timestamps();
+            $table->integer('readingTime');
+           $table->integer('contactId')->unsigned()->index()->default(0);
         });
-       // factory(Post::class,100)->create();
     }
 
     /**

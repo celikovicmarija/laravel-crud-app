@@ -12,30 +12,17 @@ class Post extends JsonResource
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
-    /*
-      return [
-            'id'=>$this->id,
-            'name'=>$this->name,
-            'detail'=>$this->detail,
-            'created_at'=>$this->created_at->format('d/m/Y H:i:s'),
-            'updated_at'=>$this->updated_at->format('d/m/Y H:i:s')
-        ];        'title',
-        'postContent',
-        'author',
-        'date',
-        'topic',
-        'readingTime'
-    }
-    */
+
     public function toArray($request)
     {
         return [
             'title'=>$this->title,
             'postContent'=>$this->postContent,
-            'author'=>$this->author,
+            'contactId'=>$this->contactId,
             'topic'=>$this->topic,
-            'date'=>$this->date,//->format('Y-m-d H:i:s')
+            'date'=>$this->date,//->format('Y-m-d H:i:s'),
             'readingTime'=>$this->readingTime
         ];
     }
+    
 }

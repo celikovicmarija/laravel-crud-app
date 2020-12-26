@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Controllers\Controller;
-use App\Models\Post as PostModel;
-use App\Http\Resources\Post as PostResource;
-use Illuminate\Support\Facades\Validator;
+
 use Illuminate\Http\Request;
+use App\Http\Resources\Post as PostResource;
+use App\Models\Post as PostModel;
+use Illuminate\Support\Facades\Validator;
+
 
 class PostController extends BaseController
 {
@@ -21,7 +22,7 @@ class PostController extends BaseController
         return $this->sendResponse(PostResource::collection($posts), 'Posts retrieved successfully');
        // $posts = Post::latest()->paginate(5);
   
-       // return view('posts.index',compact('posts'))
+       // return  view('posts.index',compact('posts'))
        //     ->with('i', (request()->input('page', 1) - 1) * 5);
  
     }
@@ -49,7 +50,7 @@ class PostController extends BaseController
         [
             'title' => 'required',
             'postContent' => 'required',
-            'author' => 'required',
+            'contactId' => 'required',
             'date' => 'required',
             'topic' => 'required',
             'readingTime' => 'required',
@@ -74,7 +75,7 @@ class PostController extends BaseController
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($id)
     {
         $post = PostModel::find($id);
         if(is_null($post)){
@@ -91,8 +92,9 @@ class PostController extends BaseController
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit($id)
     {
+        $post = PostModel::find($id);
         return view('posts.edit',compact('post'));
     }
 
@@ -110,7 +112,7 @@ class PostController extends BaseController
         [
             'title' => 'required',
             'postContent' => 'required',
-            'author' => 'required',
+            'contactId' => 'required',
             'date' => 'required',
             'topic' => 'required',
             'readingTime' => 'required',

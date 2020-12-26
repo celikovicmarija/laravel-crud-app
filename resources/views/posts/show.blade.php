@@ -26,8 +26,8 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Author:</strong>
-                {{ $post->author }}
+                <strong>ContactId:</strong>
+                {{ $post->contactId }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

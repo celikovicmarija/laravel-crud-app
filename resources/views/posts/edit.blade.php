@@ -42,8 +42,8 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Author:</strong>
-                    <input type="text" name="author" value="{{ $post->author }}" class="form-control" placeholder="Author">
+                    <strong>ContactId:</strong>
+                    <input type="text" name="contactId" value="{{ $post->contactId }}" class="form-control" placeholder="ContactId">
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">

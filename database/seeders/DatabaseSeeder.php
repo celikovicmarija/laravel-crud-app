@@ -18,9 +18,10 @@ class DatabaseSeeder extends Seeder
             PostSeeder::class //here you need the seeder class, not the model class
          ]);*/
 
-         $ps = new PostSeeder();
-         $ps->run();
          $ps = new ContactSeeder();
          $ps->run();
+         $ps = new PostSeeder();
+         $ps->run();
+
     }
 }

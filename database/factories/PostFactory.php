@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Post;
+use App\Models\Contact;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PostFactory extends Factory
@@ -21,13 +22,15 @@ class PostFactory extends Factory
      */
     public function definition()
     {
+        $contacts = Contact::all()->pluck('id')->toArray();
+        $topics=['IT','DevOps','WebDev','PHP','Laravel','Backend','Frontend','MySQL','REST','Science','Tech','News','Version Update'];
         return [
-        'title' => $this->faker->sentence($nbWords = 10),
-        'postContent' => $this->faker->text($maxNbChars = 300),
-        'author' => $this->faker->name,
+        'title' => $this->faker->sentence($nbWords = 3),
+        'postContent' => $this->faker->text($maxNbChars = 250),
         'date' => now(),
-        'topic' => $this->faker->word,
+        'topic' => $this->faker->randomElement($topics),
         'readingTime' => rand(2,25),
+        'contactId'=>$this->faker->randomElement($contacts)
 
         ];
     }

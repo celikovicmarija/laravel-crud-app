@@ -29,6 +29,7 @@ class ContactFactory extends Factory
         'city' => $this->faker->city,
         'country' =>  $this->faker->country,
         'birthDate' =>$this->faker->date,
+        'active'=>$this->faker->boolean
         ];
     }
 }

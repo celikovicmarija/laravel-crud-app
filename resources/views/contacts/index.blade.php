@@ -17,20 +17,20 @@
         </div>
     @endif
    
-    <table class="table table-bordered">
+    <table class="table table-bordered text-center">
         <tr>
             <th>No</th>
             <th>First Name</th>
-            <th>LastName</th>
+            <th>Last Name</th>
             <th>Email</th>
             <th>City</th>
             <th>Country</th>
-            <th>Date of Birth </th>
-            <th width="280px">Action</th>
+            <th width="110px">Birth Date</th>
+            <th width="230px">Action</th>
         </tr>
         @foreach ($contacts as $contact)
         <tr>
-            <td></td>
+            <td>{{$contact->id}}</td>
             <td>{{ $contact->firstName }}</td>
             <td>{{ $contact->lastName }}</td>
             <td>{{ $contact->email }}</td>
