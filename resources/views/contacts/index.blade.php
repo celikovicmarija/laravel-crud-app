@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Laravel CRUD</h2>
+                <h2 class="leading-normal mt-0 text-indigo-800">Laravel CRUD</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-success" href="{{ route('contacts.create') }}"> Create New Contact</a>
@@ -19,24 +19,24 @@
    
     <table class="table table-bordered text-center">
         <tr>
-            <th>No</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>City</th>
-            <th>Country</th>
-            <th width="110px">Birth Date</th>
-            <th width="230px">Action</th>
+            <th class="align-middle">No</th>
+            <th class="align-middle">First Name</th>
+            <th class="align-middle">Last Name</th>
+            <th class="align-middle">Email</th>
+            <th class="align-middle">City</th>
+            <th class="align-middle">Country</th>
+            <th class="align-middle" width="110px">Birth Date</th>
+            <th class="align-middle" width="230px">Action</th>
         </tr>
         @foreach ($contacts as $contact)
         <tr>
-            <td>{{$contact->id}}</td>
-            <td>{{ $contact->firstName }}</td>
-            <td>{{ $contact->lastName }}</td>
-            <td>{{ $contact->email }}</td>
-            <td>{{ $contact->city }}</td>
-            <td>{{ $contact->country }}</td>
-            <td>{{ $contact->birthDate }}</td>
+            <td class="align-middle">{{$contact->id}}</td>
+            <td class="align-middle">{{ $contact->firstName }}</td>
+            <td class="align-middle">{{ $contact->lastName }}</td>
+            <td class="align-middle">{{ $contact->email }}</td>
+            <td class="align-middle">{{ $contact->city }}</td>
+            <td class="align-middle">{{ $contact->country }}</td>
+            <td class="align-middle">{{ $contact->birthDate }}</td>
             <td>
                 <form action="{{ route('contacts.destroy',$contact->id) }}" method="POST">
    
@@ -53,7 +53,9 @@
         </tr>
         @endforeach
     </table>
+  <div class="mx-auto">
+  {!! $contacts->links('pagination::bootstrap-4') !!}
+</div>
   
-   {!! $contacts->links('pagination::bootstrap-4') !!}
      
 @endsection

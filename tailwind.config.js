@@ -1,52 +1,41 @@
-const colors = require('tailwindcss/colors')
+const plugin = require('tailwindcss/plugin')
 
 module.exports = {
+  important: true,
   purge: [
     './resources/**/*.blade.php',
     './resources/**/*.js',
     './resources/**/*.vue',
   ],
-  darkMode: false, // or 'media' or 'class'
-  theme: {
-    theme: {
-      extend: {
-        colors: {
-          'light-blue': colors.lightBlue,
-          cyan: colors.cyan,
-        },
-      },
+   darkMode: false, // or 'media' or 'class'
+   theme: {
+    container: {
+      center: true,
+      padding: "1.5rem",
     },
-    customForms: theme => ({
-      default: {
-        input: {
-          borderRadius: theme('borderRadius.lg'),
-          backgroundColor: theme('colors.gray.200'),
-          '&:focus': {
-            backgroundColor: theme('colors.white'),
-          }
-        },
-        select: {
-          borderRadius: theme('borderRadius.lg'),
-          boxShadow: theme('boxShadow.default'),
-          iconColor: theme('colors.white'),
-        },
-        checkbox: {
-          width: theme('spacing.6'),
-          height: theme('spacing.6'),
-          iconColor: theme('colors.indigo.700'),
-          icon: '<svg fill="#1a202c" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>',
-          '&:hover': {
-            iconColor: theme('colors.gray.700'),
-            icon: '<svg fill="#4a5568" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" ><path d="M0 11l2-2 5 5L18 3l2 2L7 18z"/></svg>',
-          },
-        },
-        radio: {
-          iconColor: theme('colors.indigo.700'),
-        },
-      },
-    })
-  },
-  plugins: [
-    require('@tailwindcss/custom-forms'),
-  ],
-}
+    screens: {
+      sm: { min: "640px", max: "767px" },
+      md: { min: "768px", max: "1023px" },
+      lg: { min: "1024px", max: "1279px" },
+      xl: { min: "1280px" },
+    },
+     extend: {maxHeight: {
+      xs: "20rem",
+      sm: "24rem",
+      md: "28rem",
+      lg: "32rem",
+      xl: "36rem",
+      "2xl": "42rem",
+      "3xl": "48rem",
+      "4xl": "56rem",
+      "5xl": "64rem",
+      "6xl": "72rem",
+    }},
+   },
+   variants: {
+     extend: {},
+   },
+   plugins: [
+     
+   ],
+ }
