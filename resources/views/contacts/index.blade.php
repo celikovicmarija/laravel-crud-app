@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2 class="leading-normal mt-0 text-indigo-800">Laravel CRUD</h2>
+                <h2 class="leading-normal mt-0 text-indigo-800">BlogiFY</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-success" href="{{ route('contacts.create') }}"> Create New Contact</a>

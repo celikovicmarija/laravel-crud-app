@@ -16,11 +16,12 @@ class Post extends JsonResource
     public function toArray($request)
     {
         return [
+            'id'=>$this->id,
             'title'=>$this->title,
             'postContent'=>$this->postContent,
             'contactId'=>$this->contactId,
             'topic'=>$this->topic,
-            'date'=>$this->date,//->format('Y-m-d H:i:s'),
+            'date'=>$this->date,
             'readingTime'=>$this->readingTime
         ];
     }

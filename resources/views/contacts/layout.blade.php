@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Laravel CRUD Application</title>
+    <title>Blogify</title>
     <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}">
    
     <link rel="shortcut icon" href="{{ asset('css/favicon.ico') }}">

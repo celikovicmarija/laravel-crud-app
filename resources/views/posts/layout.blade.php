@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="text-gray-900 leading-tight">
 <head>
-    <title>Laravel CRUD Application</title>
+    <title>Blogify</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
     <meta charset="UTF-8" />
     <link rel="shortcut icon" href="{{ asset('css/favicon.ico') }}">
