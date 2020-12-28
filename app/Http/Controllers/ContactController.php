@@ -18,10 +18,7 @@ class ContactController extends Controller
   
         return view('contacts.index',compact('contacts'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
- 
-   
-        //$contacts = Contact::all();
-        //return view('contacts.index', compact('contacts'));
+
     }
 
     /**

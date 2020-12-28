@@ -18,20 +18,8 @@ class ContactController extends BaseController
     {
         $contacts =ContactModel::all();
 
-        return $this->sendResponse(ContactResource::collection($contacts), 'Contacts retrieved successfully');
-      
-       // $contacts = Contact::all();
-       // return view('contacts.index', compact('contacts'));
-    }
+        return $this->sendResponse(ContactResource::collection($contacts), 'Contacts retrieved successfully!');
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('contacts.create');
     }
 
     /**
@@ -53,11 +41,11 @@ class ContactController extends BaseController
         ]);
         if($validator->fails()){
             return $this->sendError('Validation error.', $validator->errors());
-        
+        }
             $contact = ContactModel::create($input);
             return $this->sendResponse(new ContactResource($contact), 'Contact created successfully!');
     
-        }
+        
     
     }
 
@@ -73,20 +61,8 @@ class ContactController extends BaseController
         if(is_null($contact)){
             return $this->sendError('Contact not found.');
         }
-        return $this->sendResponse(new ContactResource($contact), ' Contact retrieved successfully');
-        ///return view('contacts.show',compact('contact'));
-    }
+        return $this->sendResponse(new ContactResource($contact), ' Contact retrieved successfully!');
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $contact = ContactModel::find($id);
-        return view('contacts.edit', compact('contact'));  
     }
 
     /**

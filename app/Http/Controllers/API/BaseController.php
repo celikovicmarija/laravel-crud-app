@@ -13,7 +13,7 @@ class BaseController extends Controller
             'data'=>$result,
             'message'=>$message
         ];
-     //   $result->paginate(5);
+
         return response()->json($response, 200);
     }
 

@@ -30,7 +30,7 @@
         </tr>
         @foreach ($posts as $post)
         <tr>
-            <td class="align-middle">{{ ++$i }}</td>
+            <td class="align-middle">{{ $post->id }}</td>
             <td class="align-middle">{{ $post->title }}</td>
             <td class="align-middle">{{ $post->postContent }}</td>
             <td class="align-middle">{{ $post->contactId }}</td>

@@ -20,22 +20,9 @@ class PostController extends BaseController
         $posts =PostModel::all();
 
         return $this->sendResponse(PostResource::collection($posts), 'Posts retrieved successfully');
-       // $posts = Post::latest()->paginate(5);
-  
-       // return  view('posts.index',compact('posts'))
-       //     ->with('i', (request()->input('page', 1) - 1) * 5);
- 
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('posts.create');
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -62,11 +49,6 @@ class PostController extends BaseController
         $post = PostModel::create($input);
         return $this->sendResponse(new PostResource($post), ' Post created successfully!');
 
-        //Post::create($request->all());
-   
-      //  return redirect()->route('posts.index')
-      //                 ->with('success','Post created successfully.');
- 
     }
 
     /**
@@ -83,19 +65,6 @@ class PostController extends BaseController
         }
         return $this->sendResponse(new PostResource($post), ' Post retrieved successfully');
 
-        //return view('posts.show',compact('post'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $post = PostModel::find($id);
-        return view('posts.edit',compact('post'));
     }
 
     /**
@@ -105,7 +74,7 @@ class PostController extends BaseController
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, PostModel $post)
     {
         $input = $request->all();
         $validator = Validator::make($input,
@@ -120,25 +89,16 @@ class PostController extends BaseController
         if($validator->fails()){
             return $this->sendError('Validation error.', $validator->errors());
         }
-        $post->title = $input['title'];
-        $post->postContent = $input['postContent'];
-        $post->author = $input['author'];
-        $post->date = $input['date'];
-        $post->topic = $input['topic'];
-        $post->readingTime = $input['treadingTimeitle'];
+        $post->title = $request->get('title');
+        $post->postContent =$request->get('postContent');
+        $post->contactId = $request->get('contactId');
+        $post->date = $request->get('date');
+        $post->topic =$request->get('topic');
+        $post->readingTime = $request->get('readingTime');
         $post->save();
 
         return $this->sendResponse(new PostResource($post), ' Post updated successfully!');
-
-
-        
-  
-        $post->update($request->all());
-  
-        return redirect()->route('posts.index')
-                        ->with('success','Post updated successfully');
-
-    }
+     }
 
     /**
      * Remove the specified resource from storage.
